@@ -24,11 +24,9 @@
             text-align: center;
         }
 
-        /* Responsive Styles */
-        @media only screen and (max-width: 600px) {
-            main {
-                padding: 10px; /* Adjust padding for smaller screens */
-            }
+        #errorContainer {
+            color: red;
+            margin-top: 10px;
         }
     </style>
 </head>
@@ -39,9 +37,10 @@
     </header>
 
     <main>
-        <p>This is the main content of the page. It contains information about Memes fetched using the Get API.</p>
+        <p>plutecoder technologies.</p>
         <button onclick="getRandomMeme()">Get Meme</button>
         <div id="memeContainer"></div>
+        <div id="errorContainer"></div>
     </main>
 
     <script>
@@ -52,11 +51,11 @@
                     if ('url' in data) {
                         displayMeme(data.url);
                     } else {
-                        console.error('Error: Unable to fetch meme data');
+                        displayError('Error: Unable to fetch meme data');
                     }
                 })
                 .catch(error => {
-                    console.error('Error fetching meme:', error);
+                    displayError(`Error fetching meme: ${error.message}`);
                 });
         }
 
@@ -65,8 +64,17 @@
             const memeImage = document.createElement('img');
             memeImage.src = url;
             memeImage.alt = 'Random Meme';
-            memeImage.width = '100%'; // Set the width attribute to 100%
+            memeImage.style.width = '100%'; // Set image width to 100%
             document.getElementById('memeContainer').appendChild(memeImage);
+            clearError(); // Clear any previous errors
+        }
+
+        function displayError(message) {
+            document.getElementById('errorContainer').innerText = message;
+        }
+
+        function clearError() {
+            document.getElementById('errorContainer').innerText = '';
         }
     </script>
 
