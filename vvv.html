@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Meme by using the Get API</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: rgb(9, 22, 33);
+            color: rgb(217, 186, 151);
+        }
+
+        header {
+            background-color: rgb(62, 131, 132);
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            padding: 20px;
+            text-align: center;
+        }
+
+        #errorContainer {
+            color: red;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Get Meme by using the Get API</h1>
+    </header>
+
+    <main>
+        <p>plutecoder technologies.</p>
+        <button onclick="getRandomMeme()">Get Meme</button>
+        <div id="memeContainer"></div>
+        <div id="errorContainer"></div>
+    </main>
+
+    <script>
+        function getRandomMeme() {
+            fetch('https://meme-api.com/gimme')
+                .then(response => response.json())
+                .then(data => {
+                    if ('url' in data) {
+                        displayMeme(data.url);
+                    } else {
+                        displayError('Error: Unable to fetch meme data');
+                    }
+                })
+                .catch(error => {
+                    displayError(`Error fetching meme: ${error.message}`);
+                });
+        }
+
+        function displayMeme(url) {
+            document.getElementById('memeContainer').innerHTML = '';
+            const memeImage = document.createElement('img');
+            memeImage.src = url;
+            memeImage.alt = 'Random Meme';
+            memeImage.style.width = '100%'; // Set image width to 100%
+            document.getElementById('memeContainer').appendChild(memeImage);
+            clearError(); // Clear any previous errors
+        }
+
+        function displayError(message) {
+            document.getElementById('errorContainer').innerText = message;
+        }
+
+        function clearError() {
+            document.getElementById('errorContainer').innerText = '';
+        }
+    </script>
+
+</body>
+</html>
