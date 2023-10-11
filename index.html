@@ -29,11 +29,6 @@
             main {
                 padding: 10px; /* Adjust padding for smaller screens */
             }
-
-            #memeContainer img {
-                max-width: 100%; /* Ensure images don't exceed the width of the screen */
-                height: auto; /* Maintain aspect ratio */
-            }
         }
     </style>
 </head>
@@ -70,6 +65,7 @@
             const memeImage = document.createElement('img');
             memeImage.src = url;
             memeImage.alt = 'Random Meme';
+            memeImage.width = '100%'; // Set the width attribute to 100%
             document.getElementById('memeContainer').appendChild(memeImage);
         }
     </script>
