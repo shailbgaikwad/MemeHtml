@@ -23,6 +23,27 @@
             padding: 20px;
             text-align: center;
         }
+
+        /* Responsive Styles */
+        @media only screen and (max-width: 600px) {
+            main {
+                padding: 10px; /* Adjust padding for smaller screens */
+            }
+
+            /* Landscape Orientation */
+            @media only screen and (orientation: landscape) {
+                body {
+                    background-color: rgb(33, 22, 9); /* Adjust background color for landscape */
+                }
+            }
+
+            /* Portrait Orientation */
+            @media only screen and (orientation: portrait) {
+                body {
+                    background-color: rgb(22, 33, 9); /* Adjust background color for portrait */
+                }
+            }
+        }
     </style>
 </head>
 <body>
